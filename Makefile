@@ -1,5 +1,14 @@
+REGION = us-central1
+GO_RUNTIME = go113
+FUNCTION_BASE_SOURCE = .
+ENVFILE = .env.yaml
+
+	
 deploy:
 	gcloud functions deploy Open \
-	# --source=./src \
-	--env-vars-file=env.yaml \
-	--runtime go111 --trigger-http --allow-unauthenticated
+	--source ${FUNCTION_BASE_SOURCE} \
+	--runtime ${GO_RUNTIME} \
+	--trigger-http \
+	--env-vars-file=${ENVFILE} \
+	--allow-unauthenticated \
+	--region ${REGION}

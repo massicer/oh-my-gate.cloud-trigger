@@ -1,0 +1,1 @@
+FROM massicer/golang_ci:latest

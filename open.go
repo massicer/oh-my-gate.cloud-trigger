@@ -55,7 +55,9 @@ func Open(w http.ResponseWriter, r *http.Request) {
         }
         log.Print("Topic exists")
 
-        var gate_id, _ = strconv.ParseInt(os.Getenv("GATE_ID"), 10, 32)
+        pin_param := r.URL.Query().Get("pin")
+        log.Print("Pin param extracted: ", pin_param)
+        var gate_id, _ = strconv.ParseInt(pin_param, 10, 32)
         var pub_msg = OpenMessage{
                 Id: gate_id,
                 Action: OPEN_ACTION,
