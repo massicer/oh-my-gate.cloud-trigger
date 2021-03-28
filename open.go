@@ -9,9 +9,11 @@ import (
         "os"
         "strconv"
         "log"
+        "github.com/massicer/oh-my-gate.cloud-trigger/internal/responses"
 )
 
 const OPEN_ACTION = "Open"
+const PIN_FORM_VALUE = "pin"
 
 type OpenMessage struct {
 	Id int64
@@ -55,7 +57,9 @@ func Open(w http.ResponseWriter, r *http.Request) {
         }
         log.Print("Topic exists")
 
-        pin_param := r.URL.Query().Get("pin")
+        r.ParseForm()
+        fmt.Println("Values:", r.PostForm)
+	var pin_param string = r.FormValue(PIN_FORM_VALUE)
         log.Print("Pin param extracted: ", pin_param)
         var gate_id, _ = strconv.ParseInt(pin_param, 10, 32)
         var pub_msg = OpenMessage{
@@ -75,10 +79,8 @@ func Open(w http.ResponseWriter, r *http.Request) {
                 return_response(w, "Opened", 200)
         }
 }
-        
-      
 
 func return_response(w http.ResponseWriter, message string, status int) {
-        w.WriteHeader(status)
-        fmt.Fprint(w, message)
+
+        responses.Return_json_response( w, message, status)
 }

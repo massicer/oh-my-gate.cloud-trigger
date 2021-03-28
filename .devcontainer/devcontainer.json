@@ -3,8 +3,8 @@
         "dockerfile": "Dockerfile",
     },
     "runArgs": [
-        "--env-file",
-        ".env"
+        // "--env-file",
+        // ".env.yaml"
     ],
     "context": "..",
     "extensions": [
