@@ -1,0 +1,20 @@
+{
+    "build": {
+        "dockerfile": "Dockerfile",
+    },
+    "runArgs": [
+        // "--env-file",
+        // ".env.yaml"
+    ],
+    "context": "..",
+    "extensions": [
+        "eamodio.gitlens",
+        "grimmer.vscode-back-forward-button",
+        "golang.go",
+        "oderwat.indent-rainbow",
+        "tabnine.tabnine-vscode"
+    ],
+    "mounts": [
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind,consistency=cached"
+    ]
+}
